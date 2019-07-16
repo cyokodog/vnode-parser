@@ -1,6 +1,6 @@
 {
   "name": "vnode-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "cyokodog <cyokodog@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
