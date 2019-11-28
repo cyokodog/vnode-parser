@@ -1,6 +1,6 @@
 {
   "name": "vnode-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Safly convert JSX/TSX to HTML.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
