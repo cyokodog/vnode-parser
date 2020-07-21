@@ -1,6 +1,6 @@
 # vnode-parser
 
-Safly convert JSX/TSX to HTML.
+Safly convert TSX to HTML.
 
 ## Usage
 
@@ -10,18 +10,18 @@ see https://github.com/cyokodog/vnode-parser-example
 
 #### ex01.tsx
 
-```
+```tsx
 import { h, toHtml } from 'vnode-parser';
 
 const msg = 'Hello JSX! <^_^>/';
-const vnode = <div>{ msg }</div>;
+const vnode = <div>{msg}</div>;
 const html = toHtml(vnode);
 console.log(html);
 ```
 
 #### result
 
-```
+```html
 <div>Hello JSX! &lt;^_^&gt;/</div>
 ```
 
@@ -31,19 +31,19 @@ HTML not escaped.
 
 #### ex02.tsx
 
-```
+```tsx
 import { getJsxFactory, toHtml } from 'vnode-parser';
 
-const h = getJsxFactory({encode: false});
+const h = getJsxFactory({ encode: false });
 const msg = '<h1>Hello JSX!</h1>';
-const vnode = <div>{ msg }</div>;
+const vnode = <div>{msg}</div>;
 const html = toHtml(vnode);
 console.log(html);
 ```
 
 #### result
 
-```
+```html
 <div><h1>Hello JSX!</h1></div>
 ```
 
@@ -53,7 +53,7 @@ use component.
 
 #### doc.tsx
 
-```
+```tsx
 import { h } from 'vnode-parser';
 
 const FormatDate = (props: { date: Date }) => {
@@ -61,20 +61,16 @@ const FormatDate = (props: { date: Date }) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
-  const dateStr = `${ year }-${ month }-${ day }`;
-  return (
-    <time datetime={ dateStr }>
-      { dateStr }
-    </time>
-  );
+  const dateStr = `${year}-${month}-${day}`;
+  return <time datetime={dateStr}>{dateStr}</time>;
 };
 
 const Lead = (_: any, children: any[]): JSX.Element => {
-  return <div class="lead">{ children }</div>;
+  return <div class="lead">{children}</div>;
 };
 
 const Body = (_: any, children: any[]): JSX.Element => {
-  return <div class="body">{ children }</div>;
+  return <div class="body">{children}</div>;
 };
 
 export const Doc = (
@@ -84,15 +80,15 @@ export const Doc = (
   const { title, date, author, lead } = props;
   return (
     <article>
-      <h1>{ title }</h1>
+      <h1>{title}</h1>
       <ul>
         <li>
-          <FormatDate date={ date } />
+          <FormatDate date={date} />
         </li>
-        <li>{ author }</li>
+        <li>{author}</li>
       </ul>
-      <Lead>{ lead }</Lead>
-      <Body>{ children }</Body>
+      <Lead>{lead}</Lead>
+      <Body>{children}</Body>
     </article>
   );
 };
@@ -100,14 +96,14 @@ export const Doc = (
 
 #### ex03.tsx
 
-```
+```tsx
 import { h, toHtml } from 'vnode-parser';
 import { Doc } from './doc';
 
 const title = 'Hello TypeScrpt and JSX!';
 const lead = <p>I like TypeScrpt and JSX.</p>;
 const doc: JSX.Element = (
-  <Doc title={ title } date={ new Date() } author="<^o^>/" lead={ lead }>
+  <Doc title={title} date={new Date()} author="<^o^>/" lead={lead}>
     <p>
       The document is <a href="https://www.typescriptlang.org/docs/handbook/jsx.html">here</a>.
     </p>
@@ -119,7 +115,7 @@ console.log(html);
 
 #### result
 
-```
+```html
 <article>
   <h1>Hello TypeScrpt and JSX!</h1>
   <ul>
@@ -135,13 +131,35 @@ console.log(html);
 </article>
 ```
 
+### example-4
+
+use DocumentFragment.
+
+#### use `<fragment/>`
+
+```tsx
+const vnode = (
+  <fragment>
+    Use DocumentFragment!<span>{'<^_^>/'}</span>
+  </fragment>
+);
+const html = toHtml(vnode);
+console.log(html);
+```
+
+#### result
+
+```html
+Use DocumentFragment! <span>&lt;^_^&gt;/</span>
+```
+
 ## Environment
 
 see https://github.com/cyokodog/vnode-parser-example
 
 ### package.json
 
-```
+```js
 {
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -169,7 +187,7 @@ npm i -S vnode-parser
 
 ### tsconfig.json
 
-```
+```js
 {
   "compilerOptions": {
     "target": "es2017",
@@ -183,7 +201,7 @@ npm i -S vnode-parser
 
 ### jsx.d.ts
 
-```
+```ts
 declare namespace JSX {
   export type ElementName = string | Function;
 
