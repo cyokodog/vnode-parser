@@ -1,4 +1,4 @@
-import { h, toHtml } from '../index';
+import { h, toHtml, Fragment } from '../index';
 
 const msg = 'Hello JSX! <^_^>/';
 const vnode = <div>{msg}</div>;
@@ -7,8 +7,8 @@ console.log(html);
 
 console.log(
   toHtml(
-    <fragment>
+    <Fragment>
       Use DocumentFragment! <span>{'<^_^>/'}</span>
-    </fragment>,
+    </Fragment>,
   ),
 );

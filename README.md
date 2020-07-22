@@ -1,6 +1,6 @@
 # vnode-parser
 
-Safly convert TSX to HTML.
+Safely convert TSX to HTML.
 
 ## Usage
 
@@ -100,8 +100,8 @@ export const Doc = (
 import { h, toHtml } from 'vnode-parser';
 import { Doc } from './doc';
 
-const title = 'Hello TypeScrpt and JSX!';
-const lead = <p>I like TypeScrpt and JSX.</p>;
+const title = 'Hello TypeScript and JSX!';
+const lead = <p>I like TypeScript and JSX.</p>;
 const doc: JSX.Element = (
   <Doc title={title} date={new Date()} author="<^o^>/" lead={lead}>
     <p>
@@ -117,13 +117,13 @@ console.log(html);
 
 ```html
 <article>
-  <h1>Hello TypeScrpt and JSX!</h1>
+  <h1>Hello TypeScript and JSX!</h1>
   <ul>
     <li><time datetime="2019-7-15">2019-7-15</time></li>
     <li>&lt;^o^&gt;/</li>
   </ul>
   <div class="lead">
-    <p>I like TypeScrpt and JSX.</p>
+    <p>I like TypeScript and JSX.</p>
   </div>
   <div class="body">
     <p>The document is <a href="https://www.typescriptlang.org/docs/handbook/jsx.html">here</a>.</p>
@@ -135,13 +135,15 @@ console.log(html);
 
 use DocumentFragment.
 
-#### use `<fragment/>`
+#### use `<Fragment/>`
 
 ```tsx
+import { h, toHtml, Fragment } from 'vnode-parser';
+
 const vnode = (
-  <fragment>
+  <Fragment>
     Use DocumentFragment!<span>{'<^_^>/'}</span>
-  </fragment>
+  </Fragment>
 );
 const html = toHtml(vnode);
 console.log(html);
